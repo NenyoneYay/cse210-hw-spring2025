@@ -39,5 +39,6 @@ class Program
             Console.WriteLine("Do you want to play again? {yes} {no}");
             play_again = Console.ReadLine().ToLower();
         }while (play_again == "yes");
+        Console.WriteLine("Thank you for playing!");
     }
 }
