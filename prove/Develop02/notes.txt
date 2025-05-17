@@ -1,0 +1,39 @@
+What does the program do?
+    help people record the events of their day by supplying 
+    prompts and then saving their responses along with the 
+    question and the date to a file.
+
+What user inputs does it have?
+    Date
+    Journal entree
+    read/write prompt
+    filename
+
+What output does it produce?
+    random prompt
+    Send to text file
+    previous journal entries
+
+What Classes do we want?
+    program
+        -Skip prompt?
+        -Save to file()
+        -Load from file()
+
+    entry
+        -date (prompt user for date)
+        -entry
+        -title/theme?
+        -prompt
+        -
+    prompt
+        -number
+        -text (dict)
+    
+demonstrate abstraction using member variables and methods appropriately
+        
+
+prompt day = new prompt;
+prompt _words = "What did you do today?"
+
+datetime = Console.WriteLine();
