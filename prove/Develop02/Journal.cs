@@ -13,7 +13,7 @@ public class Journal
 
 
 
-    public Entry _Write_Entry(int entryCount)
+    public Entry WriteEntry(int entryCount)
     {
         Entry tempEntry = new Entry();
 
