@@ -7,8 +7,8 @@ class Scripture
     private string _scriptureText;
     private List<Word> _scriptureWordList = new List<Word>();
     private string _textToDisplay;
-    string _gottenWord;
-    Reference _reference;
+    private string _gottenWord;
+    private Reference _reference;
     private List<int> _unhiddenWords = new List<int>(); //Used to determine which words haven't yet been hidden.
     private Random _random = new Random();
     private int randomInt;
@@ -120,7 +120,7 @@ class Scripture
             Console.Clear();
             DisplayScripture();
             BlotOutWords();
-
+            Console.WriteLine("Press 'Enter' to continue, or type 'quit' to exit");
             _userInput = Console.ReadLine().ToLower();
             if (_userInput == "quit")
             {
