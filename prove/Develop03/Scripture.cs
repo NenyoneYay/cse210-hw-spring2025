@@ -1,6 +1,8 @@
 
 
 
+using System.Runtime.CompilerServices;
+
 class Scripture
 {
     //Declare variables
@@ -11,7 +13,8 @@ class Scripture
     private Reference _reference;
     private List<int> _unhiddenWords = new List<int>(); //Used to determine which words haven't yet been hidden.
     private Random _random = new Random();
-    private int randomInt;
+    private int _randomInt;
+    private string _userTest;
 
 
     public Scripture(string scriptureBookName, string scriptureReference, string scriptureText)
@@ -96,13 +99,13 @@ class Scripture
         int _breakOut = 0;
         for (int i = 0; i < 3; i++)
         {
-            randomInt = _random.Next(0, _unhiddenWords.Count);
-            if (_scriptureWordList[randomInt].GetWord().Contains('_'))
+            _randomInt = _random.Next(0, _unhiddenWords.Count);
+            if (_scriptureWordList[_randomInt].GetWord().Contains('_'))
             {
                 i -= 1;
                 _breakOut += 1;
             }
-            _scriptureWordList[randomInt].FlipWord();
+            _scriptureWordList[_randomInt].FlipWord();
             // _unhiddenWords.Remove(randomInt);
             if (_breakOut > 10000)
             {
@@ -139,6 +142,20 @@ class Scripture
                     _timeToQuit = 0;
                 }
             }
+        }
+    }
+    public void Test()
+    {
+        Console.WriteLine("Try typing out the scripture!");
+        _userTest = Console.ReadLine().ToLower();
+        if (_userTest == _scriptureText.ToLower())
+        {
+            Console.WriteLine("You got it!");
+        }
+        else
+        {
+            Console.WriteLine("Try again!");
+            Console.WriteLine(_scriptureText);
         }
     }
 }
