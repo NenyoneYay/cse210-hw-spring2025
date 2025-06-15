@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        int i = 123;
+        Console.WriteLine(i/60);
     }
 }
