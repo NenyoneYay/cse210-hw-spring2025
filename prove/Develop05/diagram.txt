@@ -1,0 +1,50 @@
+Functional Requirements: 
+1. Provide for simple goals that can be marked complete and the user gains some value
+-Exercise: 200 EXP
+2. Eternal Goals: never complete, but each time user records them, they gain points.
+-Brush Teeth: 100 pts.
+3. Checklist goal: must be accomplished a certain number of times to complete. Gain some points each completion, gain lots upon full completion.
+4. Display score
+5. Allow user to create goals of any type
+6. Allow user to record an event (check off a goal)
+7. Show a list of goals. Should indicate whether goal has been completed or not ([ ], [x] or 2/5 times)
+8. Allow for goals and score to be saved/loaded.
+Exceeding Requirements: 
+-Allow for multiple users?
+-Level ups?
+-Loot? Store?
+
+CLASSES
+Program
+    +DisplayMenu()
+    +AddQuest()
+    +SaveFile()
+    +LoadFile()
+
+Player
+    -_currentQuests: List<Quests>
+    -_completedQuests
+    +DisplayPoints()
+
+Quest
+    -_questName : string
+    -_questDescription : string
+    -_pointValue : int
+    +CompleteQuest()
+
+SingleQuest : Quest
+    -_isCompleted : bool
+    +CompleteQuest()
+
+RepeatQuest : Quest
+    +CompleteQuest()
+
+StepQuest : Quest
+    -_stepCount
+    -_currentStep
+    -_pointValueComplete
+    +AddStep()
+    +CompleteQuest()
+
+
+4
