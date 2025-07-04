@@ -1,4 +1,8 @@
+//Exceeds Requirements: Added a system to allow for multiple user accounts, each with a name and separately tracked quests, levels and experience points
+
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 class Program
 {
@@ -10,16 +14,46 @@ class Program
             1: View quests
             2: Add quest
             3: Complete quest
+            4: Save and Quit
         */
-        Console.WriteLine("Welcome, " + player.GetName() + "! Choose one of these options.\n1. View quests\n2: Add quest\n3: Complete quest\n0: Quit");//TODO: insert player name
+        Console.WriteLine("Welcome, " + player.GetName() + "! Choose one of these options.\n1. View quests\n2: Add quest\n3: Complete quest\n4: Save and Quit\n0: Quit");//TODO: insert player name
         userChoice = int.Parse(Console.ReadLine());
         return userChoice;
     }
+    static List<Player> LoadPlayers(string filePath)
+    {
+        List<Player> tempList = new List<Player>();
+        List<Quest> tempQuestList = new List<Quest>();
+        Player tempPlayer;
+        Quest tempQuest;
+        var lines = File.ReadAllLines(filePath);
+        for (int i = 0; i < lines.Length;)
+        {
+            if (string.IsNullOrWhiteSpace(lines[i]))
+            {
+                i++;
+                continue;
+            }
+            string name = lines[i].Trim();
+            int level = int.Parse(lines[i + 1].Trim());
+            int exp = int.Parse(lines[i + 2].Trim());
+            
+
+            tempPlayer = new Player(name, level, exp);
+            tempList.Add(tempPlayer);
+
+
+            i += 4; // Skip to next block (3 lines + 1 empty line)
+        }
+
+        return tempList;
+    }
+    
 
     static void Main(string[] args)
     {
         Console.Clear(); //Begin code with a clear console.
-        //Variable declarations
+                         //Variable declarations
         List<Player> playerList = new List<Player>();
         string playerChoice = "";
         string questTypeChoice = "";
@@ -44,7 +78,8 @@ class Program
         playerList.Add(testPlayer1);
         playerList.Add(testPlayer2);
         playerList.Add(testPlayer3);
-        
+
+        playerList = LoadPlayers("players.txt");
 
         Console.WriteLine("Welcome to [TODO: Cool name for app]!");
 
@@ -54,19 +89,19 @@ class Program
             Console.WriteLine("No saved players detected! Lets create a new player.");
             Console.WriteLine("What is your players name?");
             Player tempPlayer = new Player(Console.ReadLine()); //Create a player
-            // tempPlayer.Display();
+                                                                // tempPlayer.Display();
             playerList.Add(tempPlayer);
         }
         else
         {
-            while(whileChoosePlayer == 1) //Select which player to use
+            while (whileChoosePlayer == 1) //Select which player to use
             {
                 Console.WriteLine("Choose your player: ");
                 int tempNumber = 1;
                 foreach (Player player in playerList) //Display the players in the database
                 {
                     Console.WriteLine(tempNumber.ToString() + ": " + player.GetName());
-                    tempNumber ++;
+                    tempNumber++;
                 }
                 Console.WriteLine(tempNumber.ToString() + ": Create a new player");
                 playerChoice = Console.ReadLine();
@@ -79,9 +114,9 @@ class Program
                     currentPlayer = tempPlayer; //Select new player as selected character.
                     whileChoosePlayer = 0;
                 }
-                else if ((int.Parse(playerChoice) > 0) && (int.Parse(playerChoice) < playerList.Count()+1))
+                else if ((int.Parse(playerChoice) > 0) && (int.Parse(playerChoice) < playerList.Count() + 1))
                 {
-                    currentPlayer = playerList[int.Parse(playerChoice)-1];
+                    currentPlayer = playerList[int.Parse(playerChoice) - 1];
                     whileChoosePlayer = 0;
                 }
                 else
@@ -125,7 +160,7 @@ class Program
                 tempQuestDesc = Console.ReadLine();
                 Console.WriteLine("How much EXP is this quest worth when completed? ");
                 tempQuestEXP = int.Parse(Console.ReadLine());
-                tempQuestNum = currentPlayer.GetQuestListLength()+1;
+                tempQuestNum = currentPlayer.GetQuestListLength() + 1;
                 Console.WriteLine("Is this quest a...\n1: Single Quest\n2: Repeat Quest\n3: Step Quest");
                 questTypeChoice = Console.ReadLine();
                 if (questTypeChoice == "1")
@@ -151,7 +186,7 @@ class Program
                     tempQuest = null;
                 }
                 currentPlayer.AddQuest(tempQuest);
-            
+
                 loading.DisplayLoadingScreen();
             }
             else if (menuChoice == 3) //Complete a quest
@@ -167,8 +202,8 @@ class Program
                 {
                     currentPlayer.RemoveQuest(menuChoice);
                 }
-                    //TODO: After you remove a quest, update the quest numbers!
-                
+                //TODO: After you remove a quest, update the quest numbers!
+
             }
             else if (menuChoice == 9) //This one is for testing purposes.
             {
@@ -182,7 +217,7 @@ class Program
                 Console.ReadLine();
             }
         }
-        
+
         //Begin wrapup code
         Console.WriteLine("goodbye, " + currentPlayer.GetName() + "!");
         //End wrapup code

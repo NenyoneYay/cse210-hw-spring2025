@@ -14,6 +14,15 @@ public class Player
         SingleQuest _tutorialQuest = new SingleQuest("Tutorial", "This is a tutorial quest!", 10, _questList.Count()+1);
         _questList.Add(_tutorialQuest);
     }
+
+    public Player(string name, int level, int exp) //, List<Quest> questList
+    {
+        _playerName = name;
+        _playerLevel = level;
+        _playerEXP = exp;
+        // _questList = questList;
+    }
+
     public void Display() //Display to console players name, level and EXP
     {
         Console.WriteLine("Player name: " + _playerName + "\nLevel: " + _playerLevel + "\nEXP: " + _playerEXP + "/1000");
@@ -61,13 +70,14 @@ public class Player
     }
     public void RemoveQuest(int number)
     {
+        int i = 0;
         
         if (_questList[number-1].GetQuestType() == "Single Quest")
         {
             GainEXP(_questList[number-1].CompleteQuest()); //Gain EXP for the quest
             _questList.Remove(_questList[number-1]);       //Remove quest from list.
 
-            int i = 1;
+            i = 1;
             foreach(Quest quest in _questList) //Reset all the quest numbers in the list.
             {
                 quest.SetQuestNumber(i);
@@ -87,7 +97,7 @@ public class Player
             {
                 Console.WriteLine("You completed the quest!");
                 _questList.Remove(stepQuest);
-                int i = 1;
+                i = 1;
                 foreach(Quest quest in _questList) //Reset all the quest numbers in the list.
                 {
                     quest.SetQuestNumber(i);

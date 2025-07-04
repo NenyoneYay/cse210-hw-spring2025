@@ -18,7 +18,7 @@ public abstract class Quest
     {
         return _questEXP;
     }
-    public abstract void DisplayQuest(); //TODO Make this abstract
+    public abstract void DisplayQuest();
 
     public abstract void DisplayQuestName();
 
