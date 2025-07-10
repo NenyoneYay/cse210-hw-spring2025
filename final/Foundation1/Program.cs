@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Foundation1 World!");
+        Video testVideo = new Video("testing");
+        testVideo.GetCommentCount();
     }
 }
