@@ -3,6 +3,8 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO.Enumeration;
 
+//NOTE: Our team learned how to "RickRoll" with our code, so we decided why not?
+
 class Program
 {
     static void Main(string[] args)
@@ -44,6 +46,7 @@ class Program
             foreach (Comment comment in vid._commentList)
             {
                 comment.DisplayComment();
+                Console.WriteLine();
             }
         }
 
