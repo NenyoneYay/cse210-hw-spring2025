@@ -101,5 +101,4 @@ class Program
     Print shipping label with name and address of customer[X]
     Method for if customer is in US or not [X]
     Method for returning strings of an address[X]
-
 */
