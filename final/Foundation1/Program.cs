@@ -43,6 +43,8 @@ class Program
 
         foreach (Video vid in videoList)
         {
+            //TODO print video details
+            vid.DisplayVidDetails();
             foreach (Comment comment in vid._commentList)
             {
                 comment.DisplayComment();

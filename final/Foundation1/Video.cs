@@ -12,10 +12,17 @@ public class Video
         _length = length;
     }
 
-    public int GetCommentCount()
+    public void DisplayVidDetails()
+    {
+        Console.WriteLine("Title: " + _title);
+        Console.WriteLine("Duration: " + _length);
+        GetCommentCount();
+    }
+
+    public void GetCommentCount()
     {
         Console.WriteLine("Comment count: " + _commentList.Count());
-        return _commentList.Count();
+        // return _commentList.Count();
     }
 
     public void AddComment(Comment comment)
